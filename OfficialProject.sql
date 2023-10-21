@@ -1,5 +1,8 @@
 ﻿-- 1. Total Movie, Average IMDB rating and total Gross
-SELECT COUNT(movie_title) AS number_movie, ROUND(AVG(rating), 2) AS avg_rating, SUM(gross) AS total_gross
+SELECT 
+	COUNT(movie_title) AS number_movie, 
+	ROUND(AVG(rating), 2) AS avg_rating, 
+	SUM(gross) AS total_gross
 FROM Movies
 
 -- 2. Top 10 Movies with the highest IMDB Rating Score
@@ -160,7 +163,9 @@ WHERE tg.num_count <> 0
 GROUP BY tg.genre
 
 -- 11. Average IMDB Score for each genres
-SELECT tg.genre, ROUND(AVG(mv.rating),2) as avg_score
+SELECT 
+	tg.genre, 
+	ROUND(AVG(mv.rating),2) as avg_score
 FROM Movies mv
 JOIN #TempGenre tg
 on mv.id = tg.id
@@ -172,7 +177,8 @@ ORDER BY avg_score DESC
 WITH CTE_EachDecade AS (
 SELECT 
 	tg.genre, 
-	CONCAT(FLOOR(year / 10) * 10, 's') AS decade, tg.num_count
+	CONCAT(FLOOR(year / 10) * 10, 's') AS decade, 
+	tg.num_count
 FROM Movies mv
 JOIN #TempGenre tg
 ON mv.id = tg.id
@@ -217,7 +223,9 @@ GROUP BY tp.genre
 ORDER BY genre_nominations DESC
 
 -- 15. Count number of movie in each age certification
-SELECT certification, COUNT(movie_title) as number_movies
+SELECT 
+	certification, 
+	COUNT(movie_title) as number_movies
 FROM Movies
 GROUP BY certification
 ORDER BY number_movies DESC
@@ -309,7 +317,10 @@ SELECT
 	a.metascore, a.
 	rating_metascore_ratio
 FROM (
-SELECT *, ROUND(rating/metascore, 2) AS rating_metascore_ratio, ROW_NUMBER() OVER (PARTITION BY decade ORDER BY ROUND(rating/metascore, 2) DESC ) AS rank_ratio
+SELECT 
+	*, 
+	ROUND(rating/metascore, 2) AS rating_metascore_ratio, 
+	ROW_NUMBER() OVER (PARTITION BY decade ORDER BY ROUND(rating/metascore, 2) DESC ) AS rank_ratio
 FROM #TempDecadeTable
 WHERE rating IS NOT NULL AND metascore IS NOT NULL
 ) a
