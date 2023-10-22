@@ -336,7 +336,7 @@ ON mv.id = ct.imdb_ID
 GROUP BY ct.casts
 ORDER BY avg_rating DESC
 
---  24. TOP 10 Actors/Actresses grossing and their highest grossing movies 
+--  24. TOP 10 Actors/Actresses Highest grossing and their highest grossing movies 
 WITH CTE_CastsHighestGross AS(
 SELECT
 	ct.casts, 
