@@ -1,7 +1,7 @@
 # movie_data_portfolio
 
 ## Introduction
-A data exploration of some top movies according to IMDB website which is the world's most popular and authoritative source for movie, TV and celebrity content.
+Explore some top movies according to IMDB website which is the world's most popular and authoritative source for movie, TV and celebrity content.
 
 ## Dataset used
 The dataset contains only three tables named:
