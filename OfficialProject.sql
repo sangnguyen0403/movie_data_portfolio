@@ -144,6 +144,9 @@ UNPIVOT
 						)
 )AS unpvt
 
+SELECT *
+FROM #TempGenre
+
 -- 9. Top 5 common movies' genres
 SELECT TOP 5
 	genre, 
@@ -246,7 +249,7 @@ SELECT DISTINCT
 FROM CTE_RatingAbove
 ORDER BY percentage_of_movies DESC
 
--- 17. Top 3 age certifications in each decade 
+-- 17. Top 3 age certifications in each decade
 WITH CTE_CertDecade AS(
 SELECT 
 	CONCAT(FLOOR(year / 10) * 10, 's') AS decade,
@@ -262,7 +265,7 @@ SELECT
 		WHEN RANK() OVER (PARTITION BY decade ORDER BY COUNT(certification) DESC) <= 3 THEN 'Yes'
 		ELSE 'No'
 	END AS top_3_flag
-	INTO #Temp_Top5Cert
+	INTO #Temp_Top3Cert
 FROM CTE_CertDecade
 GROUP BY decade, certification
 SELECT
@@ -270,7 +273,7 @@ SELECT
 	certification,
 	number_cert,
 	rank_by_decade
-FROM #Temp_Top5Cert
+FROM #Temp_Top3Cert
 WHERE top_3_flag = 'Yes'
 
 -- 18. Create a temp table to store the amount of Movies in each decade
