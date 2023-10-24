@@ -27,3 +27,6 @@ The dataset contains only three tables named:
         - imdb_ID: IMDB movie ID
         - casts: Name of the movie casts
 
+
+## Query Results
+Check my [test document](./SQL_QUERIES_RESULTS.md)!
