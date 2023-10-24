@@ -29,4 +29,4 @@ The dataset contains only three tables named:
 
 
 ## Query Results
-Check my [test document](./SQL_QUERIES_RESULTS.md)!
+Check the [Query Results](./SQL_QUERIES_RESULTS.md)!
